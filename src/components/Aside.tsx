@@ -1,3 +1,10 @@
+import "./Aside.css";
+
 export default function Aside() {
-  return <aside>aside</aside>;
+  return (
+    <aside>
+      <div className="all-notes-label">All Notes</div>
+      <div className="notes-container"></div>
+    </aside>
+  );
 }
