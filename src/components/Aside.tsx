@@ -12,7 +12,7 @@ export default function Aside() {
       <div className="notes-container">
         <div>
           {notes.map((note: string) => (
-            <div>{note}</div>
+            <div className="note">{note}</div>
           ))}
         </div>
       </div>
