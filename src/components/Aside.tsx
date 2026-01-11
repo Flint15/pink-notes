@@ -7,7 +7,11 @@ interface Note {
   id: string;
 }
 
-export default function Aside() {
+export default function Aside({
+  setCurrentNote,
+}: {
+  setCurrentNote: (noteId: string) => void;
+}) {
   const [notes, setNotes] = useState<Note[]>([]);
   const [selectedNote, setSelectedNote] = useState<number>();
 
@@ -24,6 +28,8 @@ export default function Aside() {
               className={`note ${index === selectedNote ? "selected" : ""}`}
               onClick={() => {
                 setSelectedNote(index);
+                console.log(note.id);
+                setCurrentNote(note.id);
               }}
             >
               {note.name}
