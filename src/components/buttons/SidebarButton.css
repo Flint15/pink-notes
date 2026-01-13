@@ -1,5 +1,14 @@
 .icon-sidebar {
   height: 24px;
+}
 
+.sidebar-button {
   cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0px;
+  border: none;
 }
