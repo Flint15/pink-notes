@@ -1,6 +1,7 @@
-import { useState } from "react";
 import SidebarButton from "./buttons/SidebarButton";
 import "./Main.css";
+
+type Notes = Record<string, string>;
 
 export default function Main({
   currentNote,
@@ -8,11 +9,9 @@ export default function Main({
   updateNotes,
 }: {
   currentNote: string;
-  notes: object;
-  updateNotes: (notes: Record<string, string>) => void;
+  notes: Notes;
+  updateNotes: (notes: Notes) => void;
 }) {
-  const [text, setText] = useState<string>("");
-  console.log(notes);
   return (
     <main>
       <div className="note-toolbar">
@@ -21,11 +20,10 @@ export default function Main({
       <div className="note-editor">
         <textarea
           onChange={(e) => {
-            setText(e.target.value);
             updateNotes({ ...notes, [currentNote]: e.target.value });
           }}
           id="textarea"
-          value={text}
+          value={notes[currentNote] || ""}
         ></textarea>
       </div>
     </main>
