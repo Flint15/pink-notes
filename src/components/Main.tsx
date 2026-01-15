@@ -5,13 +5,13 @@ type Notes = Record<string, string>;
 
 export default function Main({
   currentNote,
-  notes,
-  updateNotes,
+  notesContent,
+  updateNotesContent,
   setNoteName,
 }: {
   currentNote: string;
-  notes: Notes;
-  updateNotes: (notes: Notes) => void;
+  notesContent: Notes;
+  updateNotesContent: (notes: Notes) => void;
   setNoteName: () => void;
 }) {
   return (
@@ -22,11 +22,14 @@ export default function Main({
       <div className="note-editor">
         <textarea
           onChange={(e) => {
-            updateNotes({ ...notes, [currentNote]: e.target.value });
+            updateNotesContent({
+              ...notesContent,
+              [currentNote]: e.target.value,
+            });
             setNoteName();
           }}
           id="textarea"
-          value={notes[currentNote] || ""}
+          value={notesContent[currentNote] || ""}
         ></textarea>
       </div>
     </main>

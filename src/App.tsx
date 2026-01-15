@@ -8,11 +8,11 @@ type Notes = Record<string, string>;
 export default function App() {
   const [currentNote, setCurrentNote] = useState<string>("love");
 
-  const [notes, updateNotes] = useState<Notes>({});
+  const [notesContent, updateNotesContent] = useState<Notes>({});
 
   const setNoteName = () => {
-    if (notes[currentNote]) {
-      console.log(notes);
+    if (notesContent[currentNote]) {
+      console.log(notesContent);
     }
   };
 
@@ -21,8 +21,8 @@ export default function App() {
       <Aside setCurrentNote={setCurrentNote} />
       <Main
         currentNote={currentNote}
-        notes={notes}
-        updateNotes={updateNotes}
+        notesContent={notesContent}
+        updateNotesContent={updateNotesContent}
         setNoteName={setNoteName}
       />
     </div>
