@@ -10,10 +10,21 @@ export default function App() {
 
   const [notes, updateNotes] = useState<Notes>({});
 
+  const setNoteName = () => {
+    if (notes[currentNote]) {
+      console.log(notes);
+    }
+  };
+
   return (
     <div className="app">
       <Aside setCurrentNote={setCurrentNote} />
-      <Main currentNote={currentNote} notes={notes} updateNotes={updateNotes} />
+      <Main
+        currentNote={currentNote}
+        notes={notes}
+        updateNotes={updateNotes}
+        setNoteName={setNoteName}
+      />
     </div>
   );
 }
