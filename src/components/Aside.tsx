@@ -27,16 +27,18 @@ export default function Aside({
       <div className="notes-container">
         <div>
           {notes.map((note: Note, index: number) => (
-            <div
-              key={index}
-              id={note.id}
-              className={`note ${index === selectedNote ? "selected" : ""}`}
-              onClick={() => {
-                setSelectedNote(index);
-                setCurrentNote(note.id);
-              }}
-            >
-              {note.name}
+            <div key={index} id={note.id} className="note">
+              <div
+                className={`note-name-container ${
+                  index === selectedNote ? "selected" : ""
+                }`}
+                onClick={() => {
+                  setSelectedNote(index);
+                  setCurrentNote(note.id);
+                }}
+              >
+                {note.name}
+              </div>
               <NoteMenu />
             </div>
           ))}

@@ -1,6 +1,10 @@
 export default function NoteMenu() {
   return (
-    <button>
+    <button
+      onClick={() => {
+        console.log("love");
+      }}
+    >
       <svg
         width="20"
         height="20"

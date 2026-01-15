@@ -10,19 +10,22 @@ aside.closed {
 }
 
 .note {
-  padding: 9px 0px;
-
-  cursor: pointer;
-
   display: flex;
   justify-content: space-between;
 }
 
-.note:hover {
+.note-name-container {
+  padding: 9px 0px;
+  width: 100%;
+  
+  cursor: pointer;
+}
+
+.note-name-container:hover {
   background-color: rgba(0, 0, 0, 0.227);
 }
 
-.note.selected {
+.note-name-container.selected {
   background-color: aqua;
 }
 
