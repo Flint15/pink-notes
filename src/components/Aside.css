@@ -13,6 +13,9 @@ aside.closed {
   padding: 9px 0px;
 
   cursor: pointer;
+
+  display: flex;
+  justify-content: space-between;
 }
 
 .note:hover {
@@ -22,3 +25,4 @@ aside.closed {
 .note.selected {
   background-color: aqua;
 }
+
