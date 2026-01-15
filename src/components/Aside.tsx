@@ -41,7 +41,7 @@ export default function Aside({
                 {note.name}
               </div>
               <NoteMenuButton currentNoteIndex={index} />
-              <DropDownMenu currentNoteIndex={index} />
+              <DropDownMenu currentNoteId={note.id} />
             </div>
           ))}
         </div>

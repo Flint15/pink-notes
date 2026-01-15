@@ -1,12 +1,12 @@
 import "./DropDownMenu.css";
 
 export default function DropDownMenu({
-  currentNoteIndex,
+  currentNoteId,
 }: {
-  currentNoteIndex: number;
+  currentNoteId: string;
 }) {
   return (
-    <div className={`dropdown-menu dropdown-menu-note-id-${currentNoteIndex}`}>
+    <div className={`dropdown-menu dropdown-menu-note-id-${currentNoteId}`}>
       <button className="dropdown-menu-item can-focus">Star</button>
       <button className="dropdown-menu-item can-focus">Rename</button>
       <button className="dropdown-menu-item can-focus">Delete</button>
