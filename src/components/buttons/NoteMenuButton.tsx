@@ -1,13 +1,13 @@
 export default function NoteMenuButton({
-  currentNoteIndex,
+  currentNoteId,
 }: {
-  currentNoteIndex: number;
+  currentNoteId: string;
 }) {
   return (
     <button
       onClick={() => {
         document
-          .querySelector(`.dropdown-menu-note-id-${currentNoteIndex}`)
+          .querySelector(`.dropdown-menu-note-id-${currentNoteId}`)
           ?.classList.toggle("active");
       }}
     >

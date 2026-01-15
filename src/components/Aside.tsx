@@ -40,8 +40,12 @@ export default function Aside({
               >
                 {note.name}
               </div>
-              <NoteMenuButton currentNoteIndex={index} />
-              <DropDownMenu currentNoteId={note.id} />
+              <NoteMenuButton currentNoteId={note.id} />
+              <DropDownMenu
+                currentNoteId={note.id}
+                notes={notes}
+                setNotes={setNotes}
+              />
             </div>
           ))}
         </div>
