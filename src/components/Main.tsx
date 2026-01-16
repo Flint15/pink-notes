@@ -1,16 +1,21 @@
+import type { Dispatch, SetStateAction } from "react";
 import SidebarButton from "./buttons/SidebarButton";
 import "./Main.css";
 
-type Notes = Record<string, string>;
+interface Note {
+  id: string;
+  name: string;
+  content: string;
+}
 
 export default function Main({
+  notes,
+  updateNotes,
   currentNote,
-  notesContent,
-  updateNotesContent,
 }: {
+  notes: Note[];
+  updateNotes: Dispatch<SetStateAction<Note[]>>;
   currentNote: string;
-  notesContent: Notes;
-  updateNotesContent: (notes: Notes) => void;
 }) {
   return (
     <main>
@@ -20,13 +25,18 @@ export default function Main({
       <div className="note-editor">
         <textarea
           onChange={(e) => {
-            updateNotesContent({
-              ...notesContent,
-              [currentNote]: e.target.value,
-            });
+            updateNotes(
+              notes.map((note) => {
+                if (note.id === currentNote) {
+                  note.content = e.target.value;
+                  return note;
+                }
+                return note;
+              })
+            );
           }}
           id="textarea"
-          value={notesContent[currentNote] || ""}
+          value={notes.find((note) => note.id === currentNote)?.content || ""}
         ></textarea>
       </div>
     </main>

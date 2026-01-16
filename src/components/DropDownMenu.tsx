@@ -2,36 +2,29 @@ import { type Dispatch, type SetStateAction } from "react";
 import "./DropDownMenu.css";
 
 interface Note {
-  name: string;
   id: string;
+  name: string;
+  content: string;
 }
 
-type Notes = Record<string, string>;
-
 export default function DropDownMenu({
-  currentNoteId,
   notes,
-  setNotes,
-  updateNotesContent,
+  updateNotes,
+  currentNoteId,
   setIsModalOpen,
 }: {
-  currentNoteId: string;
   notes: Note[];
-  setNotes: (notes: Note[]) => void;
-  updateNotesContent: Dispatch<SetStateAction<Notes>>;
+  updateNotes: Dispatch<SetStateAction<Note[]>>;
+  currentNoteId: string;
   setIsModalOpen: (state: boolean) => void;
 }) {
   const deleteNote = () => {
     console.log(currentNoteId);
-    setNotes(notes.filter((note) => note.id !== currentNoteId));
-    updateNotesContent((prev) => {
-      const { [currentNoteId]: removed, ...rest } = prev;
-      return rest;
-    });
+    updateNotes(notes.filter((note) => note.id !== currentNoteId));
   };
 
   const renameNote = () => {
-    setNotes(
+    updateNotes(
       notes.filter((note) => {
         if (note.id === currentNoteId) {
           return (note.name = "Blue");

@@ -1,36 +1,32 @@
-import { useEffect, useState, type Dispatch, type SetStateAction } from "react";
+import { useState, type Dispatch, type SetStateAction } from "react";
 import NewNoteButton from "./buttons/NewNoteButton";
 import "./Aside.css";
 import NoteMenuButton from "./buttons/NoteMenuButton";
 import DropDownMenu from "./DropDownMenu";
 
 interface Note {
-  name: string;
   id: string;
+  name: string;
+  content: string;
 }
 
-type Notes = Record<string, string>;
-
 export default function Aside({
+  notes,
+  updateNotes,
   setCurrentNote,
-  updateNotesContent,
   setIsModalOpen,
 }: {
+  notes: Note[];
+  updateNotes: Dispatch<SetStateAction<Note[]>>;
   setCurrentNote: (noteId: string) => void;
-  updateNotesContent: Dispatch<SetStateAction<Notes>>;
   setIsModalOpen: (state: boolean) => void;
 }) {
-  const [notes, setNotes] = useState<Note[]>([]);
   const [selectedNote, setSelectedNote] = useState<number>();
-
-  useEffect(() => {
-    console.log(notes);
-  }, [notes]);
 
   return (
     <aside>
       <div className="all-notes-label">All Notes</div>
-      <NewNoteButton notes={notes} setNotes={setNotes} />
+      <NewNoteButton notes={notes} updateNotes={updateNotes} />
       <div className="notes-container">
         <div>
           {notes.map((note: Note, index: number) => (
@@ -48,10 +44,9 @@ export default function Aside({
               </div>
               <NoteMenuButton currentNoteId={note.id} />
               <DropDownMenu
-                currentNoteId={note.id}
                 notes={notes}
-                setNotes={setNotes}
-                updateNotesContent={updateNotesContent}
+                updateNotes={updateNotes}
+                currentNoteId={note.id}
                 setIsModalOpen={setIsModalOpen}
               />
             </div>

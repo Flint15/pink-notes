@@ -1,21 +1,26 @@
+import { type Dispatch, type SetStateAction } from "react";
 import "./NewNoteButton.css";
 
 interface Note {
   name: string;
   id: string;
+  content: string;
 }
 
 export default function NewNoteButton({
   notes,
-  setNotes,
+  updateNotes,
 }: {
   notes: Note[];
-  setNotes: (notes: Note[]) => void;
+  updateNotes: Dispatch<SetStateAction<Note[]>>;
 }) {
   return (
     <button
       onClick={() => {
-        setNotes([...notes, { name: "love", id: crypto.randomUUID() }]);
+        updateNotes([
+          ...notes,
+          { id: crypto.randomUUID(), name: "love", content: "" },
+        ]);
       }}
     >
       <svg
