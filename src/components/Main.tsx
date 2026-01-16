@@ -7,12 +7,10 @@ export default function Main({
   currentNote,
   notesContent,
   updateNotesContent,
-  setNoteName,
 }: {
   currentNote: string;
   notesContent: Notes;
   updateNotesContent: (notes: Notes) => void;
-  setNoteName: () => void;
 }) {
   return (
     <main>
@@ -26,7 +24,6 @@ export default function Main({
               ...notesContent,
               [currentNote]: e.target.value,
             });
-            setNoteName();
           }}
           id="textarea"
           value={notesContent[currentNote] || ""}

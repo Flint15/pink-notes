@@ -28,10 +28,23 @@ export default function DropDownMenu({
     });
   };
 
+  const renameNote = () => {
+    setNotes(
+      notes.filter((note) => {
+        if (note.id === currentNoteId) {
+          return (note.name = "Blue");
+        }
+        return note;
+      })
+    );
+  };
+
   return (
     <div className={`dropdown-menu dropdown-menu-note-id-${currentNoteId}`}>
       <button className="dropdown-menu-item can-focus">Star</button>
-      <button className="dropdown-menu-item can-focus">Rename</button>
+      <button className="dropdown-menu-item can-focus" onClick={renameNote}>
+        Rename
+      </button>
       <button className="dropdown-menu-item can-focus" onClick={deleteNote}>
         Delete
       </button>
