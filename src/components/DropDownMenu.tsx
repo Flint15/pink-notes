@@ -24,14 +24,6 @@ export default function DropDownMenu({
   };
 
   const renameNote = () => {
-    updateNotes(
-      notes.filter((note) => {
-        if (note.id === currentNoteId) {
-          return (note.name = "Blue");
-        }
-        return note;
-      })
-    );
     document
       .querySelector(`.dropdown-menu-note-id-${currentNoteId}`)
       ?.classList.toggle("active");

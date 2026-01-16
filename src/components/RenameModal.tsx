@@ -1,17 +1,28 @@
+import { useState, type Dispatch, type SetStateAction } from "react";
 import "./RenameModal.css";
 
+interface Note {
+  id: string;
+  name: string;
+  content: string;
+}
+
 export default function RenameModal({
+  notes,
+  updateNotes,
+  currentNoteId,
   isModalOpen,
   closeModal,
-  inputContent,
-  setInputContent,
 }: {
+  notes: Note[];
+  updateNotes: Dispatch<SetStateAction<Note[]>>;
+  currentNoteId: string;
   isModalOpen: boolean;
   closeModal: () => void;
-  inputContent: string;
-  setInputContent: (content: string) => void;
 }) {
   if (!isModalOpen) return null;
+
+  const [inputContent, setInputContent] = useState<string>("");
 
   return (
     <div
@@ -34,7 +45,14 @@ export default function RenameModal({
           <button
             className="save"
             onClick={() => {
-              console.log(inputContent);
+              updateNotes(
+                notes.filter((note) => {
+                  if (note.id === currentNoteId) {
+                    return (note.name = inputContent);
+                  }
+                  return note;
+                })
+              );
               closeModal();
             }}
           >

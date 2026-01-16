@@ -13,12 +13,12 @@ interface Note {
 export default function Aside({
   notes,
   updateNotes,
-  setCurrentNote,
+  setCurrentNoteId,
   setIsModalOpen,
 }: {
   notes: Note[];
   updateNotes: Dispatch<SetStateAction<Note[]>>;
-  setCurrentNote: (noteId: string) => void;
+  setCurrentNoteId: (noteId: string) => void;
   setIsModalOpen: (state: boolean) => void;
 }) {
   const [selectedNote, setSelectedNote] = useState<number>();
@@ -37,12 +37,15 @@ export default function Aside({
                 }`}
                 onClick={() => {
                   setSelectedNote(index);
-                  setCurrentNote(note.id);
+                  setCurrentNoteId(note.id);
                 }}
               >
                 {note.name}
               </div>
-              <NoteMenuButton currentNoteId={note.id} />
+              <NoteMenuButton
+                currentNoteId={note.id}
+                setCurrentNoteId={setCurrentNoteId}
+              />
               <DropDownMenu
                 notes={notes}
                 updateNotes={updateNotes}
