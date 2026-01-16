@@ -2,6 +2,7 @@ import Aside from "./components/Aside";
 import Main from "./components/Main";
 import "./App.css";
 import { useState } from "react";
+import RenameModal from "./components/RenameModal";
 
 type Notes = Record<string, string>;
 
@@ -21,6 +22,7 @@ export default function App() {
         notesContent={notesContent}
         updateNotesContent={updateNotesContent}
       />
+      <RenameModal />
     </div>
   );
 }

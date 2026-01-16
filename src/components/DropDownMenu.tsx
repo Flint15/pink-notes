@@ -37,6 +37,10 @@ export default function DropDownMenu({
         return note;
       })
     );
+    document
+      .querySelector(`.dropdown-menu-note-id-${currentNoteId}`)
+      ?.classList.toggle("active");
+    document.querySelector(".rename-modal-overlay")?.classList.add("active");
   };
 
   return (
