@@ -15,6 +15,16 @@ export default function RenameModal({
       onClick={() => {
         closeModal();
       }}
-    ></div>
+    >
+      <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+        <input type="text" />
+        <div className="buttons">
+          <button className="cancel" onClick={closeModal}>
+            Cancel
+          </button>
+          <button className="save">Save</button>
+        </div>
+      </div>
+    </div>
   );
 }
