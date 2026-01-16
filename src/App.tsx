@@ -10,12 +10,6 @@ export default function App() {
 
   const [notesContent, updateNotesContent] = useState<Notes>({});
 
-  const setNoteName = () => {
-    if (notesContent[currentNote]) {
-      console.log(notesContent);
-    }
-  };
-
   return (
     <div className="app">
       <Aside
@@ -26,7 +20,6 @@ export default function App() {
         currentNote={currentNote}
         notesContent={notesContent}
         updateNotesContent={updateNotesContent}
-        setNoteName={setNoteName}
       />
     </div>
   );
