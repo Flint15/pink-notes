@@ -12,10 +12,7 @@
   opacity: 0;
 }
 
-.note:hover .note-status-pinner {
-  opacity: 1;
-}
-
+.note:hover .note-status-pinner,
 .note-status-pinner.pinned {
   opacity: 1;
 }
