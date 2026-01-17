@@ -32,16 +32,18 @@ export default function Aside({
       <div className="notes-container">
         <div>
           {notes.map((note: Note, index: number) => (
-            <div key={index} id={note.id} className="note">
+            <div
+              key={index}
+              id={note.id}
+              className={`note ${index === selectedNote ? "selected" : ""}`}
+            >
               <NotePinner
                 notes={notes}
                 updateNotes={updateNotes}
                 currentNoteId={note.id}
               />
               <div
-                className={`note-name-container ${
-                  index === selectedNote ? "selected" : ""
-                }`}
+                className="note-name-container"
                 onClick={() => {
                   setSelectedNote(index);
                   setCurrentNoteId(note.id);

@@ -31,6 +31,6 @@ button {
   cursor: pointer;
 }
 
-.note-name-container.selected {
+.note.selected {
   background-color: aqua;
 }
