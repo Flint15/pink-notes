@@ -20,7 +20,11 @@ export default function NotePinner({
   return (
     <div className="note-status">
       <button
-        className="note-status-pinner"
+        className={`note-status-pinner ${
+          notes.find((note) => note.id === currentNoteId)?.pinned
+            ? `pinned`
+            : ``
+        }`}
         onClick={() => {
           updateNotes(
             notes.map((note) => {

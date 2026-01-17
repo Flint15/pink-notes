@@ -16,6 +16,10 @@
   opacity: 1;
 }
 
+.note-status-pinner.pinned {
+  opacity: 1;
+}
+
 .icon-pinner {
   height: 16px;
 }
