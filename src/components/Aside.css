@@ -45,6 +45,12 @@ button {
 
 .note-status-pinner {
   height: 16px;
+
+  opacity: 0;
+}
+
+.note:hover .note-status-pinner {
+  opacity: 1;
 }
 
 .icon-pinner {
