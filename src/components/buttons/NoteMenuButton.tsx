@@ -1,3 +1,5 @@
+import "./NoteMenuButton.css";
+
 export default function NoteMenuButton({
   currentNoteId,
   setCurrentNoteId,
@@ -7,6 +9,7 @@ export default function NoteMenuButton({
 }) {
   return (
     <button
+      className="note-menu-button"
       onClick={() => {
         setCurrentNoteId(currentNoteId);
         document
