@@ -3,13 +3,13 @@
   width: 24px;
 }
 
-button {
+.new-note-button {
   display: flex;
   align-items: center;
   justify-content: center;
 
   cursor: pointer;
 
-  padding: 0px;
+  padding: 6px;
   border: none;
 }

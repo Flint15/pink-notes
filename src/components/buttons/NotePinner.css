@@ -3,13 +3,18 @@
   align-items: center;
   justify-content: center;
 
-  padding: 0px 5px;
+  padding: 0px 5px 4px;
 }
 
 .note-status-pinner {
   height: 16px;
+  border: none;
+
+  padding: 0px;
 
   opacity: 0;
+
+  cursor: pointer;
 }
 
 .note:hover .note-status-pinner,

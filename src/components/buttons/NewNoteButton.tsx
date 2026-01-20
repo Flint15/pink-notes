@@ -17,6 +17,7 @@ export default function NewNoteButton({
 }) {
   return (
     <button
+      className="new-note-button"
       onClick={() => {
         updateNotes([
           ...notes,
