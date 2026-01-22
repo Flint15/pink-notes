@@ -5,7 +5,7 @@
 
   padding: 10px;
 
-  background-color: rgb(244, 144, 177);
+  background-color: rgb(0, 0, 0);
 
   z-index: 100;
 
@@ -18,12 +18,20 @@
   opacity: 1;
 }
 
+.buttons-container {
+  display: flex;
+  flex-direction: column;
+}
+
 .dropdown-menu-item {
   padding: 5px;
 
   background-color: transparent;
+  border: none;
+
+  cursor: pointer;
 }
 
 .can-focus:hover {
-  background-color: rgba(0, 0, 0, 0.145);
+  background-color: rgb(21, 21, 21);
 }

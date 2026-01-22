@@ -33,13 +33,15 @@ export default function DropDownMenu({
 
   return (
     <div className={`dropdown-menu dropdown-menu-note-id-${currentNoteId}`}>
-      <button className="dropdown-menu-item can-focus">Star</button>
-      <button className="dropdown-menu-item can-focus" onClick={renameNote}>
-        Rename
-      </button>
-      <button className="dropdown-menu-item can-focus" onClick={deleteNote}>
-        Delete
-      </button>
+      <div className="buttons-container">
+        <button className="dropdown-menu-item can-focus">Star</button>
+        <button className="dropdown-menu-item can-focus" onClick={renameNote}>
+          Rename
+        </button>
+        <button className="dropdown-menu-item can-focus" onClick={deleteNote}>
+          Delete
+        </button>
+      </div>
     </div>
   );
 }
