@@ -11,10 +11,6 @@ aside.closed {
   overflow: hidden;
 }
 
-button {
-  background-color: transparent;
-}
-
 .notes-container {
   width: 200px;
 }
