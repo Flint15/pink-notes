@@ -1,13 +1,7 @@
 import type { Dispatch, SetStateAction } from "react";
 import SidebarButton from "./buttons/SidebarButton";
 import "./Main.css";
-
-interface Note {
-  id: string;
-  pinned: boolean;
-  name: string;
-  content: string;
-}
+import type { Note } from "../types/note";
 
 export default function Main({
   notes,
@@ -33,7 +27,7 @@ export default function Main({
                   return note;
                 }
                 return note;
-              })
+              }),
             );
           }}
           id="textarea"

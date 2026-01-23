@@ -4,13 +4,7 @@ import "./Aside.css";
 import NoteMenuButton from "./buttons/NoteMenuButton";
 import DropDownMenu from "./DropDownMenu";
 import NotePinner from "./buttons/NotePinner";
-
-interface Note {
-  id: string;
-  pinned: boolean;
-  name: string;
-  content: string;
-}
+import type { Note } from "../types/note";
 
 export default function Aside({
   notes,

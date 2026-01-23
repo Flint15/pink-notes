@@ -3,13 +3,7 @@ import Main from "./components/Main";
 import "./App.css";
 import { useState, useEffect } from "react";
 import RenameModal from "./components/RenameModal";
-
-interface Note {
-  id: string;
-  pinned: boolean;
-  name: string;
-  content: string;
-}
+import type { Note } from "./types/note.ts";
 
 export default function App() {
   const [notes, updateNotes] = useState<Note[]>(() => {

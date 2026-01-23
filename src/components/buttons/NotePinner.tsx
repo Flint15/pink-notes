@@ -1,12 +1,6 @@
 import type { Dispatch, SetStateAction } from "react";
 import "./NotePinner.css";
-
-interface Note {
-  id: string;
-  pinned: boolean;
-  name: string;
-  content: string;
-}
+import type { Note } from "../../types/note";
 
 export default function NotePinner({
   notes,

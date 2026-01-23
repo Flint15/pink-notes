@@ -1,12 +1,6 @@
 import { type Dispatch, type SetStateAction } from "react";
 import "./DropDownMenu.css";
-
-interface Note {
-  id: string;
-  pinned: boolean;
-  name: string;
-  content: string;
-}
+import type { Note } from "../types/note";
 
 export default function DropDownMenu({
   notes,
