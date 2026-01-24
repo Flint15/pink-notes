@@ -2,7 +2,7 @@ aside {
   width: 200px;
   transition: transform 0.1s ;
 
-  background-color: rgba(255, 15, 239, 0.05);
+  background-color: var(--bg-dark);
 }
 
 aside.closed {
@@ -39,7 +39,7 @@ aside.closed {
 }
 
 .note:hover {
-  background-color: #FF10F0;
+  background-color: var(--bg-medium);
 }
 
 .note-name-container {
@@ -50,5 +50,6 @@ aside.closed {
 }
 
 .note.selected {
-  background-color: aqua;
+  background-color: var(--bg-medium);
+  border-left: 3px solid var(--pink-accent);
 }

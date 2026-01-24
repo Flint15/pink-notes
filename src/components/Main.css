@@ -8,7 +8,7 @@ main {
 .note-toolbar {
   flex: 0 0 auto;
 
-  background-color: rgb(0, 0, 0, 0);
+  background-color: var(--bg-darkest);
 }
 
 .sidebar-button {
@@ -24,7 +24,7 @@ main {
 textarea {
   flex: 1 1 auto;
 
-  background-color: rgba(0, 0, 0, 0);
+  background-color: var(--bg-darkest);
 
   border: none;
   padding: 10px;

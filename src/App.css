@@ -1,3 +1,11 @@
+:root {
+  --bg-darkest: #1a0e1a;
+  --bg-dark: #2a1828;
+  --bg-medium: #3d2838;
+  --pink-accent: #e84393;
+  --pink-soft: #ff6b9d;
+}
+
 html {
   color-scheme: dark light;
 }
