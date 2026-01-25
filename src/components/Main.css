@@ -32,6 +32,8 @@ textarea {
   font-size: 17px;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 
+  line-height: 25px;
+
   resize: none; /*prevents manual resizing*/
 }
 
