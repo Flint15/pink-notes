@@ -12,16 +12,17 @@ export default function Aside({
   currentNoteId,
   setCurrentNoteId,
   setIsModalOpen,
+  activeDropDownMenuId,
+  setActiveDropDownMenuId,
 }: {
   notes: Note[];
   updateNotes: Dispatch<SetStateAction<Note[]>>;
   currentNoteId: string;
   setCurrentNoteId: (noteId: string) => void;
   setIsModalOpen: (state: boolean) => void;
+  activeDropDownMenuId: string;
+  setActiveDropDownMenuId: Dispatch<SetStateAction<string>>;
 }) {
-  const [activeDropDowmMenuId, setActiveDropDownMenuId] =
-    useState<string>("none");
-
   useEffect(() => {
     setActiveDropDownMenuId("none");
   }, [currentNoteId]);
@@ -59,7 +60,7 @@ export default function Aside({
               </div>
               <NoteMenuButton
                 currentNoteId={note.id}
-                activeDropDowmMenuId={activeDropDowmMenuId}
+                activeDropDowmMenuId={activeDropDownMenuId}
                 setActiveDropDownMenuId={setActiveDropDownMenuId}
               />
               <DropDownMenu
@@ -67,7 +68,7 @@ export default function Aside({
                 updateNotes={updateNotes}
                 currentNoteId={note.id}
                 setIsModalOpen={setIsModalOpen}
-                activeDropDowmMenuId={activeDropDowmMenuId}
+                activeDropDowmMenuId={activeDropDownMenuId}
               />
             </div>
           ))}
