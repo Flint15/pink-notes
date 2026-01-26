@@ -9,7 +9,7 @@ const DEFAULT_NOTE: Note = {
   id: crypto.randomUUID(),
   pinned: false,
   name: "Initial love",
-  content: "Write something pretty ≽^•⩊•^≼ ",
+  content: "Write something, pretty ≽^•⩊•^≼ ",
 };
 
 export default function App() {
