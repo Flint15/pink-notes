@@ -1,4 +1,4 @@
-import { useEffect, useState, type Dispatch, type SetStateAction } from "react";
+import { useEffect, type Dispatch, type SetStateAction } from "react";
 import NewNoteButton from "./buttons/NewNoteButton";
 import "./Aside.css";
 import NoteMenuButton from "./buttons/NoteMenuButton";
@@ -23,10 +23,6 @@ export default function Aside({
   activeDropDownMenuId: string;
   setActiveDropDownMenuId: Dispatch<SetStateAction<string>>;
 }) {
-  useEffect(() => {
-    setActiveDropDownMenuId("none");
-  }, [currentNoteId]);
-
   return (
     <aside>
       <div className="upper-section">

@@ -35,6 +35,10 @@ export default function App() {
     localStorage.setItem("notes", JSON.stringify(notes));
   }, [notes]);
 
+  useEffect(() => {
+    setActiveDropDownMenuId("none");
+  }, [currentNoteId]);
+
   return (
     <div className="app">
       <Aside
