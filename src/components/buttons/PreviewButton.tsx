@@ -2,8 +2,10 @@ import type { Dispatch, SetStateAction } from "react";
 import "./PreviewButton.css";
 
 export default function PreviewButton({
+  previewMode,
   turnPreviewMode,
 }: {
+  previewMode: boolean;
   turnPreviewMode: Dispatch<SetStateAction<boolean>>;
 }) {
   return (
@@ -15,7 +17,7 @@ export default function PreviewButton({
     >
       <svg
         className="icon-preview-button"
-        fill="#ffffffdf"
+        fill={previewMode ? "#e84393" : "#ffffffdf"}
         xmlns="http://www.w3.org/2000/svg"
         width="24px"
         height="24px"

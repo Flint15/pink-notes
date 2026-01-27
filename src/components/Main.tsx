@@ -24,7 +24,10 @@ export default function Main({
     <main>
       <div className="note-toolbar">
         <SidebarButton />
-        <PreviewButton turnPreviewMode={turnPreviewMode} />
+        <PreviewButton
+          previewMode={previewMode}
+          turnPreviewMode={turnPreviewMode}
+        />
       </div>
       <div className="note-editor">
         {previewMode ? (
