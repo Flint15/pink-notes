@@ -23,6 +23,8 @@ main {
 .note-editor {
   flex: 1 1 auto;
   display: flex;
+
+  background-color: var(--bg-darkest);
 }
 
 textarea {
