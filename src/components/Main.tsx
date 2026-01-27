@@ -3,6 +3,7 @@ import SidebarButton from "./buttons/SidebarButton";
 import "./Main.css";
 import type { Note } from "../types/note";
 import PreviewButton from "./buttons/PreviewButton";
+import ReactMarkdown from "react-markdown";
 
 export default function Main({
   notes,
@@ -26,21 +27,27 @@ export default function Main({
         <PreviewButton turnPreviewMode={turnPreviewMode} />
       </div>
       <div className="note-editor">
-        <textarea
-          onChange={(e) => {
-            updateNotes(
-              notes.map((note) => {
-                if (note.id === currentNoteId) {
-                  note.content = e.target.value;
+        {previewMode ? (
+          <ReactMarkdown>{notes.find(note => note.id === currentNoteId)?.content}</ReactMarkdown>
+        ) : (
+          <textarea
+            onChange={(e) => {
+              updateNotes(
+                notes.map((note) => {
+                  if (note.id === currentNoteId) {
+                    note.content = e.target.value;
+                    return note;
+                  }
                   return note;
-                }
-                return note;
-              }),
-            );
-          }}
-          id="textarea"
-          value={notes.find((note) => note.id === currentNoteId)?.content || ""}
-        ></textarea>
+                }),
+              );
+            }}
+            id="textarea"
+            value={
+              notes.find((note) => note.id === currentNoteId)?.content || ""
+            }
+          ></textarea>
+        )}
       </div>
     </main>
   );
