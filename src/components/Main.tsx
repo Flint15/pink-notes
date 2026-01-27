@@ -26,9 +26,13 @@ export default function Main({
         <SidebarButton />
         <PreviewButton turnPreviewMode={turnPreviewMode} />
       </div>
-      <div className="note-editor">
+      <div
+        className={previewMode ? "note-editor markdown-preview" : "note-editor"}
+      >
         {previewMode ? (
-          <ReactMarkdown>{notes.find(note => note.id === currentNoteId)?.content}</ReactMarkdown>
+          <ReactMarkdown>
+            {notes.find((note) => note.id === currentNoteId)?.content}
+          </ReactMarkdown>
         ) : (
           <textarea
             onChange={(e) => {
