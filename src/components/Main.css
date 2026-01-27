@@ -27,6 +27,10 @@ main {
   background-color: var(--bg-darkest);
 }
 
+.markdown-preview {
+  padding-left: 10px;
+}
+
 textarea {
   flex: 1 1 auto;
 
