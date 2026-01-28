@@ -48,23 +48,27 @@ export default function DropDownMenu({
     <div
       className={`dropdown-menu dropdown-menu-note-id-${currentNoteId} ${currentNoteId === activeDropDowmMenuId ? `active` : ``}`}
     >
-      <div className="buttons-container">
-        <button className="dropdown-menu-item can-focus">Star</button>
-        <button className="dropdown-menu-item can-focus" onClick={renameNote}>
-          Rename
-        </button>
-        <button
-          className={`dropdown-menu-item delete ${notes.length === 1 ? "alone" : ""} can-focus`}
-          onClick={deleteNote}
-        >
-          Delete
-        </button>
-        <button
-          className="dropdown-menu-item can-focus download"
-          onClick={downloadNote}
-        >
-          Download
-        </button>
+      <div className="dropdown-menu-items-container">
+        <div className="common-items-container">
+          <button className="dropdown-menu-item can-focus">Star</button>
+          <button className="dropdown-menu-item can-focus" onClick={renameNote}>
+            Rename
+          </button>
+          <button
+            className={`dropdown-menu-item delete ${notes.length === 1 ? "alone" : ""} can-focus`}
+            onClick={deleteNote}
+          >
+            Delete
+          </button>
+        </div>
+        <div className="download-button-container">
+          <button
+            className="dropdown-menu-item can-focus download"
+            onClick={downloadNote}
+          >
+            Download
+          </button>
+        </div>
       </div>
     </div>
   );

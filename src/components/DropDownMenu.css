@@ -1,9 +1,7 @@
 .dropdown-menu {
   position: absolute;
   right: 0px;
-  bottom: -155px;
-
-  padding: 10px 20px;
+  bottom: -170px;
 
   background-color: rgb(0, 0, 0);
   border-radius: 20px;
@@ -20,10 +18,25 @@
   opacity: 1;
 }
 
-.buttons-container {
+.dropdown-menu-items-container {
+  padding: 0px 8px;
+}
+
+.dropdown-menu-items-container,
+.common-items-container {
   display: flex;
   flex-direction: column;
+}
+
+.common-items-container {
   gap: 5px;
+
+  padding: 8px;
+}
+
+.download-button-container {
+  padding: 8px;
+  border-top: 1px solid var(--border-gray);
 }
 
 .dropdown-menu-item {
@@ -44,8 +57,12 @@
 }
 
 .dropdown-menu-item.download {
-  border: 1px solid var(--border-gray);
   border-radius: 20px;
+  color: var(--pink-accent)
+}
+
+.dropdown-menu-item.download:hover {
+  color: white;
 }
 
 .can-focus:hover {
