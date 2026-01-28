@@ -16,7 +16,6 @@ export default function DropDownMenu({
   activeDropDowmMenuId: string;
 }) {
   const deleteNote = (): void => {
-    console.log(currentNoteId);
     updateNotes(notes.filter((note) => note.id !== currentNoteId));
   };
 
