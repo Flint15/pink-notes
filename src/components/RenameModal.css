@@ -52,9 +52,7 @@
   padding: 10px;
   font-size: 16px;
 
-  background-color: transparent;
-
-  border: 1px solid rgb(0, 0, 0);
+  border: 1px solid var(--border-button);
   border-radius: 10px;
 
   cursor: pointer;
@@ -68,4 +66,12 @@
 
 .buttons button:active {
   transform: scale(0.99);
+}
+
+.cancel-button {
+  background-color: var(--bg-darkest);
+}
+
+.save-button {
+  background-color: var(--pink-accent);
 }
