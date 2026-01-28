@@ -10,6 +10,7 @@ A simple and sweet note-taking application built with React and TypeScript (,,>�
 - **Rename Notes** - Change the name of your notes
 - **Delete Notes** - Remove notes that you don't need anymore (can't delete your last note!)
 - **Pin Notes** - Keep important notes at the top
+- **Download Notes** - Click download in dropdown meny and download that note as .txt
 
 ### ✍️ Note Editing
 
