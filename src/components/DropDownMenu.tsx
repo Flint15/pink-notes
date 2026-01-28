@@ -42,6 +42,9 @@ export default function DropDownMenu({
         >
           Delete
         </button>
+        <button className="dropdown-menu-item can-focus download">
+          Download
+        </button>
       </div>
     </div>
   );

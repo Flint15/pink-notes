@@ -42,6 +42,11 @@
   pointer-events: none;
 }
 
+.dropdown-menu-item.download {
+  background-color: var(--pink-soft);
+  border-radius: 10px;
+}
+
 .can-focus:hover {
   background-color: var(--pink-accent);
   border-radius: 10px;
