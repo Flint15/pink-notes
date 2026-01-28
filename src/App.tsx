@@ -27,7 +27,7 @@ export default function App() {
     () => notes[0].id || DEFAULT_NOTE.id,
   );
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-  const [activeDropDowmMenuId, setActiveDropDownMenuId] =
+  const [activeDropDownMenuId, setActiveDropDownMenuId] =
     useState<string>("none");
 
   useEffect(() => {
@@ -47,7 +47,7 @@ export default function App() {
         currentNoteId={currentNoteId}
         setCurrentNoteId={setCurrentNoteId}
         setIsModalOpen={setIsModalOpen}
-        activeDropDownMenuId={activeDropDowmMenuId}
+        activeDropDownMenuId={activeDropDownMenuId}
         setActiveDropDownMenuId={setActiveDropDownMenuId}
       />
       <Main
