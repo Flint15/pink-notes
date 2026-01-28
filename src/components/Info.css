@@ -1,0 +1,8 @@
+.info {
+  position: absolute;
+  bottom: 0px;
+
+  display: flex;
+
+  cursor: pointer;
+}

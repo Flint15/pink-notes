@@ -5,6 +5,8 @@ aside {
   border-right: 1px solid var(--border-gray);
 
   background-color: var(--bg-dark);
+
+  position :relative;
 }
 
 aside.closed {

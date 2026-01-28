@@ -5,6 +5,7 @@ import NoteMenuButton from "./buttons/NoteMenuButton";
 import DropDownMenu from "./DropDownMenu";
 import NotePinner from "./buttons/NotePinner";
 import type { Note } from "../types/note";
+import Info from "./Info";
 
 export default function Aside({
   notes,
@@ -70,6 +71,7 @@ export default function Aside({
           ))}
         </div>
       </div>
+      <Info />
     </aside>
   );
 }
