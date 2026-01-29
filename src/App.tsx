@@ -4,9 +4,10 @@ import "./App.css";
 import { useState, useEffect } from "react";
 import RenameModal from "./components/RenameModal";
 import type { Note } from "./types/note.ts";
+import { uuid } from "./utils/uuid.ts";
 
 const DEFAULT_NOTE: Note = {
-  id: crypto.randomUUID(),
+  id: uuid(),
   pinned: false,
   name: "Initial love",
   content: "Write something, pretty ≽^•⩊•^≼ ",
