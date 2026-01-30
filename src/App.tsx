@@ -30,6 +30,7 @@ export default function App() {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [activeDropDownMenuId, setActiveDropDownMenuId] =
     useState<string>("none");
+  const [activeImport, setActiveImport] = useState<boolean>(false);
 
   useEffect(() => {
     console.log(notes);
@@ -38,6 +39,7 @@ export default function App() {
 
   useEffect(() => {
     setActiveDropDownMenuId("none");
+    setActiveImport(false);
   }, [currentNoteId]);
 
   return (
@@ -50,6 +52,8 @@ export default function App() {
         setIsModalOpen={setIsModalOpen}
         activeDropDownMenuId={activeDropDownMenuId}
         setActiveDropDownMenuId={setActiveDropDownMenuId}
+        activeImport={activeImport}
+        setActiveImport={setActiveImport}
       />
       <Main
         notes={notes}

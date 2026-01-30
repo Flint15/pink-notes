@@ -1,4 +1,4 @@
-import { useEffect, useState, type Dispatch, type SetStateAction } from "react";
+import { type Dispatch, type SetStateAction } from "react";
 import NewNoteButton from "./buttons/NewNoteButton";
 import "./Aside.css";
 import NoteMenuButton from "./buttons/NoteMenuButton";
@@ -17,6 +17,8 @@ export default function Aside({
   setIsModalOpen,
   activeDropDownMenuId,
   setActiveDropDownMenuId,
+  activeImport,
+  setActiveImport,
 }: {
   notes: Note[];
   updateNotes: Dispatch<SetStateAction<Note[]>>;
@@ -25,9 +27,9 @@ export default function Aside({
   setIsModalOpen: (state: boolean) => void;
   activeDropDownMenuId: string;
   setActiveDropDownMenuId: Dispatch<SetStateAction<string>>;
+  activeImport: boolean;
+  setActiveImport: Dispatch<SetStateAction<boolean>>;
 }) {
-  const [activeImport, setActiveImport] = useState<boolean>(false);
-
   return (
     <aside>
       <div className="upper-section">
