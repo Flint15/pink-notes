@@ -1,11 +1,16 @@
+import type { Dispatch, SetStateAction } from "react";
 import "./ImportButton.css";
 
-export default function ImportButton() {
+export default function ImportButton({
+  setActiveImport,
+}: {
+  setActiveImport: Dispatch<SetStateAction<boolean>>;
+}) {
   return (
     <button
       className="import-button"
       onClick={() => {
-        console.log("love");
+        setActiveImport((prevState) => !prevState);
       }}
     >
       <svg

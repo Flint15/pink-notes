@@ -1,4 +1,4 @@
-import { type Dispatch, type SetStateAction } from "react";
+import { useEffect, useState, type Dispatch, type SetStateAction } from "react";
 import NewNoteButton from "./buttons/NewNoteButton";
 import "./Aside.css";
 import NoteMenuButton from "./buttons/NoteMenuButton";
@@ -7,6 +7,7 @@ import NotePinner from "./buttons/NotePinner";
 import type { Note } from "../types/note";
 import Info from "./Info";
 import ImportButton from "./buttons/ImportButton";
+import UploadButton from "./buttons/UploadButton";
 
 export default function Aside({
   notes,
@@ -25,6 +26,8 @@ export default function Aside({
   activeDropDownMenuId: string;
   setActiveDropDownMenuId: Dispatch<SetStateAction<string>>;
 }) {
+  const [activeImport, setActiveImport] = useState<boolean>(false);
+
   return (
     <aside>
       <div className="upper-section">
@@ -35,7 +38,8 @@ export default function Aside({
             updateNotes={updateNotes}
             setCurrentNoteId={setCurrentNoteId}
           />
-          <ImportButton />
+          <ImportButton setActiveImport={setActiveImport} />
+          <UploadButton activeImport={activeImport} />
         </div>
       </div>
       <div className="notes-container">

@@ -35,6 +35,8 @@ aside.closed {
 
 .create-notes-actions-container {
   display: flex;
+
+  position: relative;
 }
 
 .notes-container {
