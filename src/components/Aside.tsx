@@ -6,6 +6,7 @@ import DropDownMenu from "./DropDownMenu";
 import NotePinner from "./buttons/NotePinner";
 import type { Note } from "../types/note";
 import Info from "./Info";
+import ImportButton from "./buttons/ImportButton";
 
 export default function Aside({
   notes,
@@ -34,6 +35,7 @@ export default function Aside({
             updateNotes={updateNotes}
             setCurrentNoteId={setCurrentNoteId}
           />
+          <ImportButton />
         </div>
       </div>
       <div className="notes-container">

@@ -9,8 +9,11 @@
   justify-content: center;
 
   padding: 6px;
-  border: none;
   background-color: transparent;
+
+  border: 1px solid var(--border-gray);
+  border-radius: 10px 0px 0px 10px;
+  margin-right: -1px;
 
   cursor: pointer;
 }

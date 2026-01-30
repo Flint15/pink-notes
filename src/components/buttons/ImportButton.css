@@ -1,0 +1,14 @@
+.import-button {
+  background-color: transparent;
+  padding: 0px 2px;
+  margin-right: 10px;
+
+  border: 1px solid var(--border-gray);
+  border-radius: 0px 10px 10px 0px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+}

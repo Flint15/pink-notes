@@ -33,6 +33,10 @@ aside.closed {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+.create-notes-actions-container {
+  display: flex;
+}
+
 .notes-container {
   width: 100%;
 }
