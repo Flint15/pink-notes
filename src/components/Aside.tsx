@@ -28,11 +28,13 @@ export default function Aside({
     <aside>
       <div className="upper-section">
         <div className="all-notes-label">All Notes</div>
-        <NewNoteButton
-          notes={notes}
-          updateNotes={updateNotes}
-          setCurrentNoteId={setCurrentNoteId}
-        />
+        <div className="create-notes-actions-container">
+          <NewNoteButton
+            notes={notes}
+            updateNotes={updateNotes}
+            setCurrentNoteId={setCurrentNoteId}
+          />
+        </div>
       </div>
       <div className="notes-container">
         <div>
