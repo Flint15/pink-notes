@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import RenameModal from "./components/RenameModal";
 import type { Note } from "./types/note.ts";
 import { uuid } from "./utils/uuid.ts";
+import InfoModal from "./components/InfoModal.tsx";
 
 const DEFAULT_NOTE: Note = {
   id: uuid(),
@@ -28,6 +29,7 @@ export default function App() {
     () => notes[0].id || DEFAULT_NOTE.id,
   );
   const [renameModalOpen, setRenameModalOpen] = useState<boolean>(false);
+  const [infoModal, setInfoModal] = useState<boolean>(false);
   const [activeDropDownMenuId, setActiveDropDownMenuId] =
     useState<string>("none");
   const [activeImport, setActiveImport] = useState<boolean>(false);
@@ -40,6 +42,7 @@ export default function App() {
   useEffect(() => {
     setActiveDropDownMenuId("none");
     setActiveImport(false);
+    console.log(infoModal);
   }, [currentNoteId]);
 
   return (
@@ -54,6 +57,7 @@ export default function App() {
         setActiveDropDownMenuId={setActiveDropDownMenuId}
         activeImport={activeImport}
         setActiveImport={setActiveImport}
+        setInfoModal={setInfoModal}
       />
       <Main
         notes={notes}
@@ -67,6 +71,12 @@ export default function App() {
         renameModalOpen={renameModalOpen}
         closeModal={() => {
           setRenameModalOpen(false);
+        }}
+      />
+      <InfoModal
+        infoModal={infoModal}
+        closeModal={() => {
+          setInfoModal(false);
         }}
       />
     </div>

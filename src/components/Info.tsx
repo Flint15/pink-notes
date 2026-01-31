@@ -1,8 +1,18 @@
+import type { Dispatch, SetStateAction } from "react";
 import "./Info.css";
 
-export default function Info() {
+export default function Info({
+  setInfoModal,
+}: {
+  setInfoModal: Dispatch<SetStateAction<boolean>>;
+}) {
   return (
-    <div className="info">
+    <div
+      className="info"
+      onClick={() => {
+        setInfoModal(true);
+      }}
+    >
       <svg
         width="24px"
         height="24px"
@@ -22,11 +32,6 @@ export default function Info() {
           fill="#000000"
         />
       </svg>
-      <div className="info-content">
-        Your notes are stored locally in your browser. They won't sync across
-        devices, and will be deleted if you clear your browser data. Export your
-        notes regularly to back them up.
-      </div>
     </div>
   );
 }

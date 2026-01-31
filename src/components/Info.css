@@ -2,38 +2,5 @@
   position: absolute;
   bottom: 0px;
 
-  display: flex;
-
   cursor: pointer;
-}
-
-.info:hover .info-content {
-  opacity: 1;
-  visibility: visible;
-  pointer-events: auto;
-}
-
-.info-content {
-  position: absolute;
-  bottom: 20px;
-  left: 20px;
-
-  width: 400px;
-
-  background-color: var(--bg-darkest);
-  padding: 12px;
-  border: 1px solid var(--border-gray);
-  border-radius: 25px;
-
-
-  font-size: 13px;
-  font-family: sans-serif;
-
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-
-  transition:
-    visibility .2s,
-    opacity .2s;
 }

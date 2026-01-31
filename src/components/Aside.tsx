@@ -19,6 +19,7 @@ export default function Aside({
   setActiveDropDownMenuId,
   activeImport,
   setActiveImport,
+  setInfoModal,
 }: {
   notes: Note[];
   updateNotes: Dispatch<SetStateAction<Note[]>>;
@@ -29,6 +30,7 @@ export default function Aside({
   setActiveDropDownMenuId: Dispatch<SetStateAction<string>>;
   activeImport: boolean;
   setActiveImport: Dispatch<SetStateAction<boolean>>;
+  setInfoModal: Dispatch<SetStateAction<boolean>>;
 }) {
   return (
     <aside>
@@ -86,7 +88,7 @@ export default function Aside({
           ))}
         </div>
       </div>
-      <Info />
+      <Info setInfoModal={setInfoModal} />
     </aside>
   );
 }
