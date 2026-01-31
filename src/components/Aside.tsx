@@ -41,7 +41,12 @@ export default function Aside({
             setCurrentNoteId={setCurrentNoteId}
           />
           <ImportButton setActiveImport={setActiveImport} />
-          <UploadButton activeImport={activeImport} />
+          <UploadButton
+            activeImport={activeImport}
+            notes={notes}
+            updateNotes={updateNotes}
+            setCurrentNoteId={setCurrentNoteId}
+          />
         </div>
       </div>
       <div className="notes-container">

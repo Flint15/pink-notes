@@ -1,10 +1,17 @@
-import type { ChangeEvent } from "react";
+import type { ChangeEvent, Dispatch, SetStateAction } from "react";
 import "./UploadButton.css";
+import type { Note } from "../../types/note";
 
 export default function UploadButton({
   activeImport,
+  notes,
+  updateNotes,
+  setCurrentNoteId,
 }: {
   activeImport: boolean;
+  notes: Note[];
+  updateNotes: Dispatch<SetStateAction<Note[]>>;
+  setCurrentNoteId: (chatId: string) => void;
 }) {
   const handleFileSelect = (event: ChangeEvent<HTMLInputElement>): void => {
     const file = event.target.files?.[0];
@@ -12,12 +19,33 @@ export default function UploadButton({
 
     if (file.type === "text/plain") {
       const reader = new FileReader();
-      reader.onload = (event) => {
-        const target = event.target;
+      reader.onload = (e) => {
+        const target = e.target;
         if (!target) {
           return;
         }
-        console.log(target.result);
+        const name: string = file.name.split(".")[0];
+        const result = target.result;
+        if (typeof result !== "string") {
+          const newNoteId = crypto.randomUUID();
+          setCurrentNoteId(newNoteId);
+          updateNotes([
+            ...notes,
+            { id: newNoteId, pinned: false, name: file.name, content: "" },
+          ]);
+          event.target.value = "";
+          return;
+        }
+
+        const content: string = result;
+
+        const newNoteId = crypto.randomUUID();
+        setCurrentNoteId(newNoteId);
+        updateNotes([
+          ...notes,
+          { id: newNoteId, pinned: false, name: name, content: content },
+        ]);
+        event.target.value = "";
       };
       reader.readAsText(file);
     } else {
