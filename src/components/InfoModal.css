@@ -41,4 +41,11 @@
   margin-left: 5px;
   text-decoration: none;
   color: var(--pink-accent);
+
+  padding: 4px;
+}
+
+.info-source a:hover {
+  border: 1px solid var(--border-pink);
+  border-radius: 20px;
 }
