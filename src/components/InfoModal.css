@@ -20,7 +20,25 @@
 
   padding: 15px;
   width: 520px;
+}
 
+.info-storage,
+.info-source {
   font-size: 16px;
   font-family: sans-serif;
+}
+
+.info-storage {
+  padding-bottom: 10px;
+}
+
+.info-source {
+  border-top: 1px solid var(--border-gray);
+  padding-top: 10px;
+}
+
+.info-source a {
+  margin-left: 5px;
+  text-decoration: none;
+  color: var(--pink-accent);
 }
