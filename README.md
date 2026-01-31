@@ -13,6 +13,7 @@ No installation needed - start taking notes immediately in your browser!
 ### 📌 Note Management
 
 - **Create Notes** - Quickly add new notes with a single click
+- **Upload Notes** - Import `.txt` files directly into your notes collection
 - **Rename Notes** - Change the name of your notes
 - **Delete Notes** - Remove notes that you don't need anymore (can't delete your last note!)
 - **Pin Notes** - Keep important notes at the top
