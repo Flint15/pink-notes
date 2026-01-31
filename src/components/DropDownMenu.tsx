@@ -6,13 +6,13 @@ export default function DropDownMenu({
   notes,
   updateNotes,
   currentNoteId,
-  setIsModalOpen,
+  setRenameModalOpen,
   activeDropDownMenuId,
 }: {
   notes: Note[];
   updateNotes: Dispatch<SetStateAction<Note[]>>;
   currentNoteId: string;
-  setIsModalOpen: (state: boolean) => void;
+  setRenameModalOpen: (state: boolean) => void;
   activeDropDownMenuId: string;
 }) {
   const deleteNote = (): void => {
@@ -23,7 +23,7 @@ export default function DropDownMenu({
     document
       .querySelector(`.dropdown-menu-note-id-${currentNoteId}`)
       ?.classList.toggle("active");
-    setIsModalOpen(true);
+    setRenameModalOpen(true);
   };
 
   const downloadNote = (): void => {

@@ -14,7 +14,7 @@ export default function Aside({
   updateNotes,
   currentNoteId,
   setCurrentNoteId,
-  setIsModalOpen,
+  setRenameModalOpen,
   activeDropDownMenuId,
   setActiveDropDownMenuId,
   activeImport,
@@ -24,7 +24,7 @@ export default function Aside({
   updateNotes: Dispatch<SetStateAction<Note[]>>;
   currentNoteId: string;
   setCurrentNoteId: (noteId: string) => void;
-  setIsModalOpen: (state: boolean) => void;
+  setRenameModalOpen: (state: boolean) => void;
   activeDropDownMenuId: string;
   setActiveDropDownMenuId: Dispatch<SetStateAction<string>>;
   activeImport: boolean;
@@ -79,7 +79,7 @@ export default function Aside({
                 notes={notes}
                 updateNotes={updateNotes}
                 currentNoteId={note.id}
-                setIsModalOpen={setIsModalOpen}
+                setRenameModalOpen={setRenameModalOpen}
                 activeDropDownMenuId={activeDropDownMenuId}
               />
             </div>

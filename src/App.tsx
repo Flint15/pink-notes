@@ -27,7 +27,7 @@ export default function App() {
   const [currentNoteId, setCurrentNoteId] = useState<string>(
     () => notes[0].id || DEFAULT_NOTE.id,
   );
-  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [renameModalOpen, setRenameModalOpen] = useState<boolean>(false);
   const [activeDropDownMenuId, setActiveDropDownMenuId] =
     useState<string>("none");
   const [activeImport, setActiveImport] = useState<boolean>(false);
@@ -49,7 +49,7 @@ export default function App() {
         updateNotes={updateNotes}
         currentNoteId={currentNoteId}
         setCurrentNoteId={setCurrentNoteId}
-        setIsModalOpen={setIsModalOpen}
+        setRenameModalOpen={setRenameModalOpen}
         activeDropDownMenuId={activeDropDownMenuId}
         setActiveDropDownMenuId={setActiveDropDownMenuId}
         activeImport={activeImport}
@@ -64,9 +64,9 @@ export default function App() {
         notes={notes}
         updateNotes={updateNotes}
         currentNoteId={currentNoteId}
-        isModalOpen={isModalOpen}
+        renameModalOpen={renameModalOpen}
         closeModal={() => {
-          setIsModalOpen(false);
+          setRenameModalOpen(false);
         }}
       />
     </div>

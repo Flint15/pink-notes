@@ -6,16 +6,16 @@ export default function RenameModal({
   notes,
   updateNotes,
   currentNoteId,
-  isModalOpen,
+  renameModalOpen,
   closeModal,
 }: {
   notes: Note[];
   updateNotes: Dispatch<SetStateAction<Note[]>>;
   currentNoteId: string;
-  isModalOpen: boolean;
+  renameModalOpen: boolean;
   closeModal: () => void;
 }) {
-  if (!isModalOpen) return null;
+  if (!renameModalOpen) return null;
 
   const [inputContent, setInputContent] = useState<string>("");
 
