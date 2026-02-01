@@ -66,6 +66,7 @@ export default function Aside({
               />
               <div
                 className="note-name-container"
+                title={note.name}
                 onClick={() => {
                   setCurrentNoteId(note.id);
                 }}

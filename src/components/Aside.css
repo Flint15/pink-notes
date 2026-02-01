@@ -46,6 +46,7 @@ aside.closed {
   width: 100%;
   flex: 1;
   overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .note {
@@ -65,13 +66,17 @@ aside.closed {
 }
 
 .note-name-container {
-  padding: 9px 0px;
-  width: 100%;
-  
+  padding: 9px 0px;  
+  width: 167px;
+
   font-size: 16px;
   font-family: sans-serif;
 
   cursor: pointer;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .note.selected {
