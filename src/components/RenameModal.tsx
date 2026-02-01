@@ -1,6 +1,6 @@
 import React, { useState, type Dispatch, type SetStateAction } from "react";
 import "./RenameModal.css";
-import type { Note } from "../types/note";
+import type { NoteData } from "../types/note";
 
 export default function RenameModal({
   notes,
@@ -9,8 +9,8 @@ export default function RenameModal({
   renameModalOpen,
   closeModal,
 }: {
-  notes: Note[];
-  updateNotes: Dispatch<SetStateAction<Note[]>>;
+  notes: NoteData[];
+  updateNotes: Dispatch<SetStateAction<NoteData[]>>;
   activeDropDownMenuId: string;
   renameModalOpen: boolean;
   closeModal: () => void;

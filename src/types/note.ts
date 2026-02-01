@@ -1,4 +1,4 @@
-export interface Note {
+export interface NoteData {
   id: string
   pinned: boolean
   name: string

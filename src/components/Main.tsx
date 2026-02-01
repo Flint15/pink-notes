@@ -1,7 +1,7 @@
 import { useEffect, useState, type Dispatch, type SetStateAction } from "react";
 import SidebarButton from "./buttons/SidebarButton";
 import "./Main.css";
-import type { Note } from "../types/note";
+import type { NoteData } from "../types/note";
 import PreviewButton from "./buttons/PreviewButton";
 import ReactMarkdown from "react-markdown";
 
@@ -10,8 +10,8 @@ export default function Main({
   updateNotes,
   currentNoteId,
 }: {
-  notes: Note[];
-  updateNotes: Dispatch<SetStateAction<Note[]>>;
+  notes: NoteData[];
+  updateNotes: Dispatch<SetStateAction<NoteData[]>>;
   currentNoteId: string;
 }) {
   const [previewMode, turnPreviewMode] = useState<boolean>(false);

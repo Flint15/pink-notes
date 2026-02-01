@@ -3,11 +3,11 @@ import Main from "./components/Main";
 import "./App.css";
 import { useState, useEffect } from "react";
 import RenameModal from "./components/RenameModal";
-import type { Note } from "./types/note.ts";
+import type { NoteData } from "./types/note.ts";
 import { uuid } from "./utils/uuid.ts";
 import InfoModal from "./components/InfoModal.tsx";
 
-const DEFAULT_NOTE: Note = {
+const DEFAULT_NOTE: NoteData = {
   id: uuid(),
   pinned: false,
   name: "Initial love",
@@ -15,7 +15,7 @@ const DEFAULT_NOTE: Note = {
 };
 
 export default function App() {
-  const [notes, updateNotes] = useState<Note[]>(() => {
+  const [notes, updateNotes] = useState<NoteData[]>(() => {
     try {
       const storedNotes = localStorage.getItem("notes");
       const parsedNotes = storedNotes ? JSON.parse(storedNotes) : [];

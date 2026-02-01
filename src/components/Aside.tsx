@@ -4,7 +4,7 @@ import "./Aside.css";
 import NoteMenuButton from "./buttons/NoteMenuButton";
 import DropDownMenu from "./DropDownMenu";
 import NotePinner from "./buttons/NotePinner";
-import type { Note } from "../types/note";
+import type { NoteData } from "../types/note";
 import Info from "./InfoButton";
 import ImportButton from "./buttons/ImportButton";
 import UploadButton from "./buttons/UploadButton";
@@ -21,8 +21,8 @@ export default function Aside({
   setActiveImport,
   setInfoModal,
 }: {
-  notes: Note[];
-  updateNotes: Dispatch<SetStateAction<Note[]>>;
+  notes: NoteData[];
+  updateNotes: Dispatch<SetStateAction<NoteData[]>>;
   currentNoteId: string;
   setCurrentNoteId: (noteId: string) => void;
   setRenameModalOpen: (state: boolean) => void;
@@ -53,7 +53,7 @@ export default function Aside({
       </div>
       <div className="notes-container">
         <div>
-          {notes.map((note: Note) => (
+          {notes.map((note: NoteData) => (
             <div
               key={note.id}
               id={note.id}
