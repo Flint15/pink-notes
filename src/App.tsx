@@ -42,7 +42,6 @@ export default function App() {
   useEffect(() => {
     setActiveDropDownMenuId("none");
     setActiveImport(false);
-    console.log(infoModal);
   }, [currentNoteId]);
 
   return (
@@ -67,7 +66,7 @@ export default function App() {
       <RenameModal
         notes={notes}
         updateNotes={updateNotes}
-        currentNoteId={currentNoteId}
+        activeDropDownMenuId={activeDropDownMenuId}
         renameModalOpen={renameModalOpen}
         closeModal={() => {
           setRenameModalOpen(false);

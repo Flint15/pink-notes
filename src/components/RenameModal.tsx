@@ -5,13 +5,13 @@ import type { Note } from "../types/note";
 export default function RenameModal({
   notes,
   updateNotes,
-  currentNoteId,
+  activeDropDownMenuId,
   renameModalOpen,
   closeModal,
 }: {
   notes: Note[];
   updateNotes: Dispatch<SetStateAction<Note[]>>;
-  currentNoteId: string;
+  activeDropDownMenuId: string;
   renameModalOpen: boolean;
   closeModal: () => void;
 }) {
@@ -22,7 +22,9 @@ export default function RenameModal({
   const confirmRename = (): void => {
     updateNotes(
       notes.map((note) =>
-        note.id === currentNoteId ? { ...note, name: inputContent } : note,
+        note.id === activeDropDownMenuId
+          ? { ...note, name: inputContent }
+          : note,
       ),
     );
     closeModal();
