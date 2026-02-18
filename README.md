@@ -22,7 +22,7 @@ No installation needed - start taking notes immediately in your browser!
 ### ✍️ Note Editing
 
 - **Clean Text Editor** - Distraction-free writing experience
-- **Markdown Support** - Write in Markwon and preview formatted content with the preview button
+- **Markdown Support** - Write in Markdown and preview formatted content with the preview button
 - **Auto-Save** - Your notes are automatically saved to local storage
 - **Easy Navigation** - Switch between notes with a single click
 
