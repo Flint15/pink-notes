@@ -42,8 +42,7 @@ export default function Main({
               updateNotes(
                 notes.map((note) => {
                   if (note.id === currentNoteId) {
-                    note.content = e.target.value;
-                    return note;
+                    return { ...note, content: e.target.value };
                   }
                   return note;
                 }),
