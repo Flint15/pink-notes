@@ -35,7 +35,6 @@ export default function App() {
   const [activeImport, setActiveImport] = useState<boolean>(false);
 
   useEffect(() => {
-    console.log(notes);
     localStorage.setItem("notes", JSON.stringify(notes));
   }, [notes]);
 
