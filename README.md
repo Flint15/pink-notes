@@ -18,6 +18,7 @@ No installation needed - start taking notes immediately in your browser!
 - **Delete Notes** - Remove notes that you don't need anymore (can't delete your last note!)
 - **Pin Notes** - Keep important notes at the top
 - **Download Notes** - Export individual notes as `.txt` files via the dropdown menu
+- **Export All Notes** - Download all notes at once as a `.zip` archive containing individual `.txt` files
 
 ### ✍️ Note Editing
 
@@ -90,6 +91,7 @@ Navigate to the URL shown in your terminal (usually `http://localhost:5173`)
 - TypeScript
 - Vite
 - CSS
+- JSZip
 
 ### 📄 License
 
