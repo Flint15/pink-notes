@@ -6,6 +6,7 @@ import Info from "./InfoButton";
 import ImportButton from "./buttons/ImportButton";
 import UploadButton from "./buttons/UploadButton";
 import Note from "./Note";
+import InfoMenu from "./InfoMenu";
 
 export default function Aside({
   notes,
@@ -18,6 +19,8 @@ export default function Aside({
   activeImport,
   setActiveImport,
   setInfoModal,
+  infoMenu,
+  setInfoMenu,
 }: {
   notes: NoteData[];
   updateNotes: Dispatch<SetStateAction<NoteData[]>>;
@@ -29,6 +32,8 @@ export default function Aside({
   activeImport: boolean;
   setActiveImport: Dispatch<SetStateAction<boolean>>;
   setInfoModal: Dispatch<SetStateAction<boolean>>;
+  infoMenu: boolean;
+  setInfoMenu: Dispatch<SetStateAction<boolean>>;
 }) {
   return (
     <aside>
@@ -65,7 +70,8 @@ export default function Aside({
           ))}
         </div>
       </div>
-      <Info setInfoModal={setInfoModal} />
+      <Info setInfoMenu={setInfoMenu} />
+      <InfoMenu infoMenu={infoMenu} />
     </aside>
   );
 }

@@ -2,15 +2,15 @@ import type { Dispatch, SetStateAction } from "react";
 import "./InfoButton.css";
 
 export default function Info({
-  setInfoModal,
+  setInfoMenu,
 }: {
-  setInfoModal: Dispatch<SetStateAction<boolean>>;
+  setInfoMenu: Dispatch<SetStateAction<boolean>>;
 }) {
   return (
     <div
       className="info"
       onClick={() => {
-        setInfoModal(true);
+        setInfoMenu((prev) => !prev);
       }}
     >
       <svg

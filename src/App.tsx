@@ -33,6 +33,7 @@ export default function App() {
   const [activeDropDownMenuId, setActiveDropDownMenuId] =
     useState<string>("none");
   const [activeImport, setActiveImport] = useState<boolean>(false);
+  const [infoMenu, setInfoMenu] = useState<boolean>(false);
 
   useEffect(() => {
     localStorage.setItem("notes", JSON.stringify(notes));
@@ -56,6 +57,8 @@ export default function App() {
         activeImport={activeImport}
         setActiveImport={setActiveImport}
         setInfoModal={setInfoModal}
+        infoMenu={infoMenu}
+        setInfoMenu={setInfoMenu}
       />
       <Main
         notes={notes}

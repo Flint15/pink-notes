@@ -1,0 +1,35 @@
+.info-menu {
+  position: fixed;
+  bottom: 24px;
+  left: 18px;
+
+  background-color: rgb(0, 0, 0);
+  border-radius: 20px;
+  border: 1px solid #3a3a3a;
+
+  padding: 10px;
+}
+
+.info-menu-items-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.info-menu button {
+  cursor: pointer;
+  background: none;
+  border: none;
+
+  font-size: 15px;
+  font-family: sans-serif;
+
+  width: 100%;
+
+  padding: 5px 7px;
+}
+
+.can-focus:hover {
+  background-color: var(--pink-accent);
+  border-radius: 20px;
+}
