@@ -71,7 +71,7 @@ export default function Aside({
         </div>
       </div>
       <Info setInfoMenu={setInfoMenu} />
-      <InfoMenu infoMenu={infoMenu} />
+      <InfoMenu infoMenu={infoMenu} setInfoModal={setInfoModal} />
     </aside>
   );
 }
