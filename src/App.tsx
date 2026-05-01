@@ -6,6 +6,9 @@ import RenameModal from "./components/RenameModal";
 import type { NoteData } from "./types/note.ts";
 import { uuid } from "./utils/uuid.ts";
 import InfoModal from "./components/InfoModal.tsx";
+import Auth from "./components/Auth.tsx";
+import { supabase } from "./lib/supabase.ts";
+import type { Session } from "@supabase/supabase-js";
 
 const DEFAULT_NOTE: NoteData = {
   id: uuid(),
@@ -15,6 +18,9 @@ const DEFAULT_NOTE: NoteData = {
 };
 
 export default function App() {
+  const [session, setSession] = useState<Session | null>(null);
+  const [sessionLoading, setSessionLoading] = useState(true);
+
   const [notes, updateNotes] = useState<NoteData[]>(() => {
     try {
       const storedNotes = localStorage.getItem("notes");
@@ -36,6 +42,21 @@ export default function App() {
   const [infoMenu, setInfoMenu] = useState<boolean>(false);
 
   useEffect(() => {
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setSession(session);
+      setSessionLoading(false);
+    });
+
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((_event, session) => {
+      setSession(session);
+    });
+
+    return () => subscription.unsubscribe();
+  }, []);
+
+  useEffect(() => {
     localStorage.setItem("notes", JSON.stringify(notes));
   }, [notes]);
 
@@ -43,6 +64,10 @@ export default function App() {
     setActiveDropDownMenuId("none");
     setActiveImport(false);
   }, [currentNoteId]);
+
+  if (sessionLoading) return null;
+
+  if (!session) return <Auth />;
 
   return (
     <div className="app">
