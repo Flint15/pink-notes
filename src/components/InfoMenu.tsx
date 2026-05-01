@@ -2,6 +2,7 @@ import type { Dispatch, SetStateAction } from "react";
 import "./InfoMenu.css";
 import type { NoteData } from "../types/note";
 import JSZip from "jszip";
+import { supabase } from "../lib/supabase";
 
 export default function InfoMenu({
   notes,
@@ -38,6 +39,11 @@ export default function InfoMenu({
     }, 100);
   };
 
+  const signOut = async () => {
+    closeMenu();
+    await supabase.auth.signOut();
+  };
+
   return (
     <div className="info-menu">
       <div className="info-menu-items-container">
@@ -55,6 +61,11 @@ export default function InfoMenu({
         <div className="export-all can-focus">
           <button className="button-export-all" onClick={exportAll}>
             Export All
+          </button>
+        </div>
+        <div className="sign-out can-focus">
+          <button className="button-sign-" onClick={signOut}>
+            Sign Out
           </button>
         </div>
       </div>
