@@ -10,9 +10,8 @@ import InfoMenu from "./InfoMenu";
 
 export default function Aside({
   notes,
-  updateNotes,
-  setCurrentNoteId,
   currentNoteId,
+  setCurrentNoteId,
   setRenameModalOpen,
   activeDropDownMenuId,
   setActiveDropDownMenuId,
@@ -21,11 +20,14 @@ export default function Aside({
   setInfoModal,
   infoMenu,
   setInfoMenu,
+  onCreateNote,
+  onDeleteNote,
+  onPinNote,
+  onUploadNote,
 }: {
   notes: NoteData[];
-  updateNotes: Dispatch<SetStateAction<NoteData[]>>;
-  setCurrentNoteId: (noteId: string) => void;
   currentNoteId: string;
+  setCurrentNoteId: (noteId: string) => void;
   setRenameModalOpen: (state: boolean) => void;
   activeDropDownMenuId: string;
   setActiveDropDownMenuId: Dispatch<SetStateAction<string>>;
@@ -34,23 +36,21 @@ export default function Aside({
   setInfoModal: Dispatch<SetStateAction<boolean>>;
   infoMenu: boolean;
   setInfoMenu: Dispatch<SetStateAction<boolean>>;
+  onCreateNote: () => void;
+  onDeleteNote: (noteId: string) => void;
+  onPinNote: (noteId: string) => void;
+  onUploadNote: (name: string, content: string) => void;
 }) {
   return (
     <aside>
       <div className="upper-section">
         <div className="all-notes-label">All Notes</div>
         <div className="create-notes-actions-container">
-          <NewNoteButton
-            notes={notes}
-            updateNotes={updateNotes}
-            setCurrentNoteId={setCurrentNoteId}
-          />
+          <NewNoteButton onCreateNote={onCreateNote} />
           <ImportButton setActiveImport={setActiveImport} />
           <UploadButton
             activeImport={activeImport}
-            notes={notes}
-            updateNotes={updateNotes}
-            setCurrentNoteId={setCurrentNoteId}
+            onUploadNote={onUploadNote}
           />
         </div>
       </div>
@@ -58,14 +58,16 @@ export default function Aside({
         <div>
           {notes.map((note: NoteData) => (
             <Note
+              key={note.id}
               note={note}
               notes={notes}
-              updateNotes={updateNotes}
               setCurrentNoteId={setCurrentNoteId}
               currentNoteId={currentNoteId}
               setRenameModalOpen={setRenameModalOpen}
               activeDropDownMenuId={activeDropDownMenuId}
               setActiveDropDownMenuId={setActiveDropDownMenuId}
+              onDeleteNote={onDeleteNote}
+              onPinNote={onPinNote}
             />
           ))}
         </div>

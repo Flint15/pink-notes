@@ -1,32 +1,29 @@
-import React, { useState, type Dispatch, type SetStateAction } from "react";
+import React, { useState } from "react";
 import "./RenameModal.css";
 import type { NoteData } from "../types/note";
 
 export default function RenameModal({
   notes,
-  updateNotes,
   activeDropDownMenuId,
   renameModalOpen,
   closeModal,
+  onUpdateNote,
 }: {
   notes: NoteData[];
-  updateNotes: Dispatch<SetStateAction<NoteData[]>>;
   activeDropDownMenuId: string;
   renameModalOpen: boolean;
   closeModal: () => void;
+  onUpdateNote: (note: NoteData) => void;
 }) {
   if (!renameModalOpen) return null;
 
   const [inputContent, setInputContent] = useState<string>("");
 
   const confirmRename = (): void => {
-    updateNotes(
-      notes.map((note) =>
-        note.id === activeDropDownMenuId
-          ? { ...note, name: inputContent }
-          : note,
-      ),
-    );
+    const note = notes.find((note) => note.id === activeDropDownMenuId);
+    if (!note) return;
+
+    onUpdateNote({ ...note, name: inputContent });
     closeModal();
   };
 

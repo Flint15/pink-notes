@@ -8,21 +8,23 @@ import type { NoteData } from "../types/note";
 export default function Note({
   note,
   notes,
-  updateNotes,
   setCurrentNoteId,
   currentNoteId,
   setRenameModalOpen,
   activeDropDownMenuId,
   setActiveDropDownMenuId,
+  onDeleteNote,
+  onPinNote,
 }: {
   note: NoteData;
   notes: NoteData[];
-  updateNotes: Dispatch<SetStateAction<NoteData[]>>;
   setCurrentNoteId: (noteId: string) => void;
   currentNoteId: string;
   setRenameModalOpen: (state: boolean) => void;
   activeDropDownMenuId: string;
   setActiveDropDownMenuId: Dispatch<SetStateAction<string>>;
+  onDeleteNote: (noteId: string) => void;
+  onPinNote: (noteId: string) => void;
 }) {
   return (
     <div
@@ -31,9 +33,9 @@ export default function Note({
       className={`note ${note.id === currentNoteId ? "selected" : ""}`}
     >
       <NotePinner
-        notes={notes}
-        updateNotes={updateNotes}
         currentNoteId={note.id}
+        pinned={note.pinned}
+        onPinNote={onPinNote}
       />
       <div
         className="note-name-container"
@@ -51,10 +53,10 @@ export default function Note({
       />
       <DropDownMenu
         notes={notes}
-        updateNotes={updateNotes}
         currentNoteId={note.id}
         setRenameModalOpen={setRenameModalOpen}
         activeDropDownMenuId={activeDropDownMenuId}
+        onDeleteNote={onDeleteNote}
       />
     </div>
   );

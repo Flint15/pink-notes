@@ -4,36 +4,18 @@ import "./App.css";
 import { useState, useEffect } from "react";
 import RenameModal from "./components/RenameModal";
 import type { NoteData } from "./types/note.ts";
-import { uuid } from "./utils/uuid.ts";
 import InfoModal from "./components/InfoModal.tsx";
 import Auth from "./components/Auth.tsx";
 import { supabase } from "./lib/supabase.ts";
 import type { Session } from "@supabase/supabase-js";
 
-const DEFAULT_NOTE: NoteData = {
-  id: uuid(),
-  pinned: false,
-  name: "Initial love",
-  content: "Write something, pretty ≽^•⩊•^≼ ",
-};
-
 export default function App() {
   const [session, setSession] = useState<Session | null>(null);
   const [sessionLoading, setSessionLoading] = useState(true);
 
-  const [notes, updateNotes] = useState<NoteData[]>(() => {
-    try {
-      const storedNotes = localStorage.getItem("notes");
-      const parsedNotes = storedNotes ? JSON.parse(storedNotes) : [];
-      return parsedNotes.length > 0 ? parsedNotes : [DEFAULT_NOTE];
-    } catch (error) {
-      console.error("Failed to load notes from localStorage");
-      return [DEFAULT_NOTE];
-    }
-  });
-  const [currentNoteId, setCurrentNoteId] = useState<string>(
-    () => notes[0].id || DEFAULT_NOTE.id,
-  );
+  const [notes, setNotes] = useState<NoteData[]>([]);
+  const [notesLoading, setNotesLoading] = useState(false);
+  const [currentNoteId, setCurrentNoteId] = useState<string>("");
   const [renameModalOpen, setRenameModalOpen] = useState<boolean>(false);
   const [infoModal, setInfoModal] = useState<boolean>(false);
   const [activeDropDownMenuId, setActiveDropDownMenuId] =
@@ -57,23 +39,154 @@ export default function App() {
   }, []);
 
   useEffect(() => {
-    localStorage.setItem("notes", JSON.stringify(notes));
-  }, [notes]);
+    if (session) {
+      fetchNotes();
+    }
+  });
 
-  useEffect(() => {
-    setActiveDropDownMenuId("none");
-    setActiveImport(false);
-  }, [currentNoteId]);
+  const fetchNotes = async () => {
+    setNotesLoading(true);
+
+    const { data, error } = await supabase
+      .from("notes")
+      .select("*")
+      .order("created_at", { ascending: false });
+
+    if (error) {
+      console.error("Error fetchin notes:", error);
+    } else {
+      const fetched: NoteData[] = data.map((note) => ({
+        id: note.id,
+        name: note.name,
+        content: note.content,
+        pinned: note.pinned,
+      }));
+
+      // pinned notes first
+      const sorted = [
+        ...fetched.filter((note) => note.pinned),
+        ...fetched.filter((note) => !note.pinned),
+      ];
+
+      setNotes(sorted);
+      if (sorted.length > 0) setCurrentNoteId(sorted[0].id);
+    }
+
+    setNotesLoading(false);
+  };
+
+  const createNote = async () => {
+    if (!session) return;
+
+    const { data, error } = await supabase
+      .from("notes")
+      .insert({
+        user_id: session.user.id,
+        name: "love",
+        content: "",
+        pinned: false,
+      })
+      .select()
+      .single();
+
+    if (error) {
+      console.error("Error creating note:", error);
+    } else {
+      const newNote: NoteData = {
+        id: data.id,
+        name: data.name,
+        content: data.content,
+        pinned: data.pinned,
+      };
+      setNotes((prev) => [...prev, newNote]);
+      setCurrentNoteId(data.id);
+    }
+  };
+
+  const uploadNote = async (name: string, content: string) => {
+    if (!session) return;
+
+    const { data, error } = await supabase
+      .from("notes")
+      .insert({
+        user_id: session.user.id,
+        name,
+        content,
+        pinned: false,
+      })
+      .select()
+      .single();
+
+    if (error) {
+      console.error("Error uploading note:", error);
+    } else {
+      const newNote: NoteData = {
+        id: data.id,
+        name: data.name,
+        content: data.content,
+        pinned: data.pinned,
+      };
+      setNotes((prev) => [...prev, newNote]);
+      setCurrentNoteId(data.id);
+    }
+  };
+
+  const updateNote = async (updateNote: NoteData) => {
+    const { error } = await supabase
+      .from("notes")
+      .update({
+        name: updateNote.name,
+        content: updateNote.content,
+        pinned: updateNote.pinned,
+      })
+      .eq("id", updateNote.id);
+
+    if (error) console.error("Error updating note:", error);
+
+    setNotes((prev) =>
+      prev.map((n) => (n.id === updateNote.id ? updateNote : n)),
+    );
+  };
+
+  const deleteNote = async (noteId: string) => {
+    const { error } = await supabase.from("notes").delete().eq("id", noteId);
+
+    if (error) {
+      console.error("Error deleting note:", error);
+      return;
+    }
+
+    const remaining = notes.filter((notes) => notes.id !== noteId);
+    setNotes(remaining);
+    if (remaining.length > 0) setCurrentNoteId(remaining[0].id);
+  };
+
+  const pinNote = async (noteId: string) => {
+    const note = notes.find((note) => note.id === noteId);
+    if (!note) return;
+
+    const updatedNote = { ...note, pinned: !note.pinned };
+    await updateNote(updatedNote);
+
+    setNotes((prev) => {
+      const updated = prev.map((note) =>
+        note.id === noteId ? updatedNote : note,
+      );
+      return [
+        ...updated.filter((note) => note.pinned),
+        ...updated.filter((note) => !note.pinned),
+      ];
+    });
+  };
 
   if (sessionLoading) return null;
-
   if (!session) return <Auth />;
+  if (notesLoading) return <div className="app-loading">Loading notes...</div>;
 
   return (
     <div className="app">
       <Aside
         notes={notes}
-        updateNotes={updateNotes}
         currentNoteId={currentNoteId}
         setCurrentNoteId={setCurrentNoteId}
         setRenameModalOpen={setRenameModalOpen}
@@ -84,20 +197,24 @@ export default function App() {
         setInfoModal={setInfoModal}
         infoMenu={infoMenu}
         setInfoMenu={setInfoMenu}
+        onCreateNote={createNote}
+        onDeleteNote={deleteNote}
+        onPinNote={pinNote}
+        onUploadNote={uploadNote}
       />
       <Main
         notes={notes}
-        updateNotes={updateNotes}
         currentNoteId={currentNoteId}
+        onUpdateNote={updateNote}
       />
       <RenameModal
         notes={notes}
-        updateNotes={updateNotes}
         activeDropDownMenuId={activeDropDownMenuId}
         renameModalOpen={renameModalOpen}
         closeModal={() => {
           setRenameModalOpen(false);
         }}
+        onUpdateNote={updateNote}
       />
       <InfoModal
         infoModal={infoModal}

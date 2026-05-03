@@ -1,22 +1,21 @@
-import { type Dispatch, type SetStateAction } from "react";
 import "./DropDownMenu.css";
 import type { NoteData } from "../types/note";
 
 export default function DropDownMenu({
   notes,
-  updateNotes,
   currentNoteId,
   setRenameModalOpen,
   activeDropDownMenuId,
+  onDeleteNote,
 }: {
   notes: NoteData[];
-  updateNotes: Dispatch<SetStateAction<NoteData[]>>;
   currentNoteId: string;
   setRenameModalOpen: (state: boolean) => void;
   activeDropDownMenuId: string;
+  onDeleteNote: (noteId: string) => void;
 }) {
   const deleteNote = (): void => {
-    updateNotes(notes.filter((note) => note.id !== currentNoteId));
+    onDeleteNote(currentNoteId);
   };
 
   const renameNote = (): void => {

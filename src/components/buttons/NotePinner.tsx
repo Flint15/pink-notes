@@ -1,45 +1,19 @@
-import type { Dispatch, SetStateAction } from "react";
 import "./NotePinner.css";
-import type { NoteData } from "../../types/note";
 
 export default function NotePinner({
-  notes,
-  updateNotes,
   currentNoteId,
+  pinned,
+  onPinNote,
 }: {
-  notes: NoteData[];
-  updateNotes: Dispatch<SetStateAction<NoteData[]>>;
   currentNoteId: string;
+  pinned: boolean;
+  onPinNote: (noteId: string) => void;
 }) {
   return (
     <div className="note-status">
       <button
-        className={`note-status-pinner ${
-          notes.find((note) => note.id === currentNoteId)?.pinned
-            ? `pinned`
-            : ``
-        }`}
-        onClick={() => {
-          updateNotes((prevNotes) => {
-            let currentNote = prevNotes.find(
-              (note) => note.id === currentNoteId,
-            );
-
-            if (!currentNote) return prevNotes;
-
-            const updatedNote = { ...currentNote, pinned: !currentNote.pinned };
-
-            return currentNote.pinned
-              ? [
-                  ...prevNotes.filter((note) => note.id !== currentNoteId),
-                  updatedNote,
-                ]
-              : [
-                  updatedNote,
-                  ...prevNotes.filter((note) => note.id !== currentNoteId),
-                ];
-          });
-        }}
+        className={`note-status-pinner ${pinned ? "pinned" : ""}`}
+        onClick={() => onPinNote(currentNoteId)}
       >
         <svg
           className="icon-pinner"

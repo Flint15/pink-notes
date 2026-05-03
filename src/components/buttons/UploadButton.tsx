@@ -1,17 +1,12 @@
-import type { ChangeEvent, Dispatch, SetStateAction } from "react";
+import type { ChangeEvent } from "react";
 import "./UploadButton.css";
-import type { NoteData } from "../../types/note";
 
 export default function UploadButton({
   activeImport,
-  notes,
-  updateNotes,
-  setCurrentNoteId,
+  onUploadNote,
 }: {
   activeImport: boolean;
-  notes: NoteData[];
-  updateNotes: Dispatch<SetStateAction<NoteData[]>>;
-  setCurrentNoteId: (chatId: string) => void;
+  onUploadNote: (name: string, content: string) => void;
 }) {
   const handleFileSelect = (event: ChangeEvent<HTMLInputElement>): void => {
     const file = event.target.files?.[0];
@@ -26,17 +21,7 @@ export default function UploadButton({
         }
         const name: string = file.name.split(".")[0];
         const result = target.result;
-        const newNoteId = crypto.randomUUID();
-        setCurrentNoteId(newNoteId);
-        updateNotes([
-          ...notes,
-          {
-            id: newNoteId,
-            pinned: false,
-            name: name,
-            content: typeof result === "string" ? result : "",
-          },
-        ]);
+        onUploadNote(name, typeof result === "string" ? result : "");
         event.target.value = "";
       };
       reader.readAsText(file);

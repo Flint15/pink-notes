@@ -1,4 +1,4 @@
-import { useEffect, useState, type Dispatch, type SetStateAction } from "react";
+import { useEffect, useState } from "react";
 import SidebarButton from "./buttons/SidebarButton";
 import "./Main.css";
 import type { NoteData } from "../types/note";
@@ -7,18 +7,20 @@ import ReactMarkdown from "react-markdown";
 
 export default function Main({
   notes,
-  updateNotes,
   currentNoteId,
+  onUpdateNote,
 }: {
   notes: NoteData[];
-  updateNotes: Dispatch<SetStateAction<NoteData[]>>;
   currentNoteId: string;
+  onUpdateNote: (note: NoteData) => void;
 }) {
   const [previewMode, turnPreviewMode] = useState<boolean>(false);
 
   useEffect(() => {
     turnPreviewMode(false);
   }, [currentNoteId]);
+
+  const currentNote = notes.find((note) => note.id === currentNoteId);
 
   return (
     <main>
@@ -39,14 +41,8 @@ export default function Main({
         ) : (
           <textarea
             onChange={(e) => {
-              updateNotes(
-                notes.map((note) => {
-                  if (note.id === currentNoteId) {
-                    return { ...note, content: e.target.value };
-                  }
-                  return note;
-                }),
-              );
+              if (!currentNote) return;
+              onUpdateNote({ ...currentNote, content: e.target.value });
             }}
             id="textarea"
             value={

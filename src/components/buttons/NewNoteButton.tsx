@@ -1,28 +1,12 @@
-import { type Dispatch, type SetStateAction } from "react";
 import "./NewNoteButton.css";
-import type { NoteData } from "../../types/note";
 
 export default function NewNoteButton({
-  notes,
-  updateNotes,
-  setCurrentNoteId,
+  onCreateNote,
 }: {
-  notes: NoteData[];
-  updateNotes: Dispatch<SetStateAction<NoteData[]>>;
-  setCurrentNoteId: (noteId: string) => void;
+  onCreateNote: () => void;
 }) {
   return (
-    <button
-      className="new-note-button"
-      onClick={() => {
-        const newNoteId = crypto.randomUUID();
-        setCurrentNoteId(newNoteId);
-        updateNotes([
-          ...notes,
-          { id: newNoteId, pinned: false, name: "love", content: "" },
-        ]);
-      }}
-    >
+    <button className="new-note-button" onClick={onCreateNote}>
       <svg
         className="icon-new-note"
         xmlns="http://www.w3.org/2000/svg"
