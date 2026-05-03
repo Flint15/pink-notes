@@ -14,7 +14,6 @@ export default function App() {
   const [sessionLoading, setSessionLoading] = useState(true);
 
   const [notes, setNotes] = useState<NoteData[]>([]);
-  const [notesLoading, setNotesLoading] = useState(true);
   const [currentNoteId, setCurrentNoteId] = useState<string>("");
   const [renameModalOpen, setRenameModalOpen] = useState<boolean>(false);
   const [infoModal, setInfoModal] = useState<boolean>(false);
@@ -45,8 +44,6 @@ export default function App() {
   });
 
   const fetchNotes = async () => {
-    setNotesLoading(true);
-
     const { data, error } = await supabase
       .from("notes")
       .select("*")
@@ -71,8 +68,6 @@ export default function App() {
       setNotes(sorted);
       if (sorted.length > 0) setCurrentNoteId(sorted[0].id);
     }
-
-    setNotesLoading(false);
   };
 
   const createNote = async () => {
@@ -181,7 +176,6 @@ export default function App() {
 
   if (sessionLoading) return null;
   if (!session) return <Auth />;
-  if (notesLoading) return <div className="app-loading">Loading notes...</div>;
 
   return (
     <div className="app">
