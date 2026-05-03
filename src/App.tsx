@@ -14,7 +14,7 @@ export default function App() {
   const [sessionLoading, setSessionLoading] = useState(true);
 
   const [notes, setNotes] = useState<NoteData[]>([]);
-  const [notesLoading, setNotesLoading] = useState(false);
+  const [notesLoading, setNotesLoading] = useState(true);
   const [currentNoteId, setCurrentNoteId] = useState<string>("");
   const [renameModalOpen, setRenameModalOpen] = useState<boolean>(false);
   const [infoModal, setInfoModal] = useState<boolean>(false);
