@@ -1,7 +1,7 @@
 import Aside from "./components/Aside";
 import Main from "./components/Main";
 import "./App.css";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import RenameModal from "./components/RenameModal";
 import type { NoteData } from "./types/note.ts";
 import InfoModal from "./components/InfoModal.tsx";
@@ -41,7 +41,9 @@ export default function App() {
     if (session) {
       fetchNotes();
     }
-  });
+  }, [session]);
+
+  const saveTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const fetchNotes = async () => {
     const { data, error } = await supabase
@@ -126,21 +128,25 @@ export default function App() {
     }
   };
 
-  const updateNote = async (updateNote: NoteData) => {
-    const { error } = await supabase
-      .from("notes")
-      .update({
-        name: updateNote.name,
-        content: updateNote.content,
-        pinned: updateNote.pinned,
-      })
-      .eq("id", updateNote.id);
-
-    if (error) console.error("Error updating note:", error);
-
+  const updateNote = async (updatedNote: NoteData) => {
+    // update UI instantly
     setNotes((prev) =>
-      prev.map((n) => (n.id === updateNote.id ? updateNote : n)),
+      prev.map((note) => (note.id === updatedNote.id ? updatedNote : note)),
     );
+
+    if (saveTimeout.current) clearTimeout(saveTimeout.current);
+    saveTimeout.current = setTimeout(async () => {
+      const { error } = await supabase
+        .from("notes")
+        .update({
+          name: updatedNote.name,
+          content: updatedNote.content,
+          pinned: updatedNote.pinned,
+        })
+        .eq("id", updatedNote.id);
+
+      if (error) console.error("Error updating note:", error);
+    }, 500);
   };
 
   const deleteNote = async (noteId: string) => {
