@@ -13,6 +13,8 @@ export default function App() {
   const [session, setSession] = useState<Session | null>(null);
   const [sessionLoading, setSessionLoading] = useState(true);
 
+  const notesFetched = useRef(false);
+
   const [notes, setNotes] = useState<NoteData[]>([]);
   const [currentNoteId, setCurrentNoteId] = useState<string>("");
   const [renameModalOpen, setRenameModalOpen] = useState<boolean>(false);
@@ -38,8 +40,13 @@ export default function App() {
   }, []);
 
   useEffect(() => {
-    if (session) {
+    if (session && !notesFetched.current) {
       fetchNotes();
+      notesFetched.current = true;
+    } else if (!session) {
+      setNotes([]);
+      setCurrentNoteId("");
+      notesFetched.current = false;
     }
   }, [session]);
 
