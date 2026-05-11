@@ -1,13 +1,15 @@
-.upload-button {
+.upload-buttons {
   position: absolute;
   bottom: -45px;
   right: 10px;
 
+  z-index: 101;
+}
+
+.upload-button {
   background-color: var(--bg-dark);
   border: 1px solid var(--border-gray);
   border-radius: 20px;
-
-  z-index: 101;
 
   padding: 6px 15px;
   
