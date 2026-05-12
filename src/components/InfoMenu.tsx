@@ -21,9 +21,18 @@ export default function InfoMenu({
     closeMenu();
 
     const zip = new JSZip();
+    const nameCount: Record<string, number> = {};
 
     notes.forEach((note) => {
-      zip.file(note.name + ".txt", note.content);
+      const baseName = note.name;
+
+      if (nameCount[baseName] === undefined) {
+        nameCount[baseName] = 0;
+        zip.file(baseName + ".txt", note.content);
+      } else {
+        nameCount[baseName]++;
+        zip.file(`${baseName}(${nameCount[baseName]}).txt`, note.content);
+      }
     });
 
     const content = await zip.generateAsync({ type: "blob" });
