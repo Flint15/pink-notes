@@ -15,9 +15,9 @@ export default function RenameModal({
   closeModal: () => void;
   onUpdateNote: (note: NoteData) => void;
 }) {
-  if (!renameModalOpen) return null;
-
   const [inputContent, setInputContent] = useState<string>("");
+
+  if (!renameModalOpen) return null;
 
   const confirmRename = (): void => {
     const note = notes.find((note) => note.id === activeDropDownMenuId);
