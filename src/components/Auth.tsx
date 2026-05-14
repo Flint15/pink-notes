@@ -1,10 +1,12 @@
 import { useState } from "react";
 import { supabase } from "../lib/supabase";
 import "./Auth.css";
+import ShowPasswordButton from "./buttons/ShowPasswordButton";
 
 export default function Auth() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isVisiblePassword, setIsVisiblePassword] = useState<boolean>(false);
   const [isSignUp, setIsSignUp] = useState(false);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
@@ -28,19 +30,26 @@ export default function Auth() {
         <p className="auth-subtitle">≽^•⩊•^≼</p>
 
         <input
-          className="auth-input"
+          className="auth-input email"
           type="email"
           placeholder="Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
-        <input
-          className="auth-input"
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
+
+        <div className="password-input-container">
+          <input
+            className="auth-input password"
+            type={`${isVisiblePassword ? "text" : "password"}`}
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <ShowPasswordButton
+            isVisiblePassword={isVisiblePassword}
+            setIsVisiblePassword={setIsVisiblePassword}
+          />
+        </div>
 
         {error && <p className="auth-error">{error}</p>}
 
